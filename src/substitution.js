@@ -4,12 +4,13 @@
 // of the anonymous function on line 6
 
 const substitutionModule = (function () {
-  // you can add any code you want within this function scope
-
+  
   function substitution(input, alphabet, encode = true) {
-    //console.log((/(\w)(?=.*?\1)/).test(alphabet))
-    if(typeof input != "string" || typeof alphabet != "string" || alphabet.length !== 26 || (/(\w)(?=.*?\1)/).test(alphabet)) return false;
+    if(typeof input != "string" || typeof alphabet != "string") return false;
 
+    const repeatedSymbolInAlphabet = (/(\w)(?=.*?\1)/).test(alphabet)
+    if(alphabet.length !== 26 || repeatedSymbolInAlphabet) return false;
+  
     if(!encode) {
       return input.toLowerCase().split('').map(ch => {
         if(!alphabet.includes(ch)) return ch;
@@ -19,8 +20,9 @@ const substitutionModule = (function () {
     }
     
     return input.toLowerCase().split('').map(ch => {
-      if(ch.match(/\d|\s|\W/g)) return ch;
-      chCode = ch.charCodeAt(0) - 97;
+      const notAlphaCharachter = ch.match(/\d|\s|\W/g);
+      if(notAlphaCharachter) return ch;
+      const chCode = ch.charCodeAt() - 97;
       return alphabet[chCode];
     }).join('');
   }

@@ -2,13 +2,13 @@ const expect = require("chai").expect;
 const substitution = require("../src/substitution.js").substitution;
 
 describe("substitution", () => {
-    it("should return the encoded message according to the given alphabet.", () => {
+    it("should return the encoded message according to the given alphabet. 🙌🙌🙌", () => {
         let expected = 'jrufscpw';
         let actual = substitution("thinkful", "xoyqmcgrukswaflnthdjpzibev");
         expect(actual).to.be.equal(expected);
     });
 
-    it("should return the decoded message according to the given alphabet.", () => {
+    it("should return the decoded message according to the given alphabet. 🙌🙌🙌", () => {
         let expected = 'thinkful';
         let actual = substitution("jrufscpw", "xoyqmcgrukswaflnthdjpzibev", false);
         expect(actual).to.be.equal(expected);
@@ -18,7 +18,7 @@ describe("substitution", () => {
         expect(actual).to.be.equal(expected);
     });
 
-    it("should return messages that only encode and decode letters.", () => {
+    it("should return messages that only encode and decode letters. 🙌🙌🙌", () => {
         expected = "'jrufscpw' @123!";
         actual = substitution("'thinkful' @123!", "xoyqmcgrukswaflnthdjpzibev");
         expect(actual).to.be.equal(expected);
@@ -28,7 +28,7 @@ describe("substitution", () => {
         expect(actual).to.be.equal(expected);
     });
 
-    it("should ignore capital letters.", () => {
+    it("should ignore capital letters. 🙌🙌🙌", () => {
         expected = "'jrufscpw' @123!";
         actual = substitution("'THinkful' @123!", "xoyqmcgrukswaflnthdjpzibev");
         expect(actual).to.be.equal(expected);
@@ -38,7 +38,7 @@ describe("substitution", () => {
         expect(actual).to.be.equal(expected);
     });
 
-    it("should return false if the given alphabet has repeating charachters.", () => {
+    it("should return false if the given alphabet has repeating charachters. 🙌🙌🙌", () => {
         actual = substitution("jrufscpw @123!", ["cxxxxxgrukswaflnthdjpzibev"], false);
         expect(actual).to.be.false;
         
@@ -46,7 +46,7 @@ describe("substitution", () => {
         expect(actual).to.be.false;
     });
 
-    it("should return false if the message or alphabet type is not a string.", () => {
+    it("should return false if the message or alphabet type is not a string. 🙌🙌🙌🎉🎉🎉🎊🎈🎊🎈", () => {
         actual = substitution("jrufscpw @123!", ["xoyqmcgrukswaflnthdjpzibev"], false);
         expect(actual).to.be.false;
 

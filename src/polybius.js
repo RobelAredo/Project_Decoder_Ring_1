@@ -4,27 +4,35 @@
 // of the anonymous function on line 6
 
 const polybiusModule = (function () {
-  // you can add any code you want within this function scope
 
   function polybius(input, encode = true) {
     if(typeof input != "string") return false;
 
+    //Decode
     if(!encode){
-      if(input.match(/\d{1}/g).length%2) return false;
+      const oddNumberOfDigits = input.match(/\d{1}/g).length%2;
+      if(oddNumberOfDigits) return false;
+      // matches every pair of digits or any non-digits
       return input.match(/\d{2}|\D/g).map(code => {
-        if(!(code*1)) return code;
+        const notDigit = !(code*1);
+        if(notDigit) return code;
         if(code === "42") return "(i/j)";
-        return code[1] <= 2 && code != "52" ? String.fromCharCode((code[1]-1)*5 + code[0]*1 + 96) : String.fromCharCode((code[1]-1)*5 + code[0]*1 + 97);
+        return code[1] <= 2 && code != "52" 
+          ? String.fromCharCode((code[1]-1)*5 + code[0]*1 + 96) //if > 42
+          : String.fromCharCode((code[1]-1)*5 + code[0]*1 + 97); //if < 42
       }).join('')
     }
 
-    if(input.match(/\d{2,}/g)) return false;
+    //Encode
+    const thereIsAPairOfDigits = input.match(/\d{2,}/g);
+    if(thereIsAPairOfDigits) return false;
     return input.toLowerCase().split('').map(ch => {
-      if(ch.match(/\d|\s|\W/g)) return ch;
-      chCode = ch.charCodeAt(0)
-      if(chCode >= 97 && chCode <= 122){
-        return chCode >= 106 ? String((chCode - 98) % 5 + 1) + String(Math.floor((chCode - 98) / 5 + 1)) : String((chCode - 97) % 5 + 1) + String(Math.floor((chCode - 97) / 5 + 1));
-      }
+      const notAlphaCharachter = ch.match(/\d|\s|\W/g);
+      if(notAlphaCharachter) return ch;
+      chCode = ch.charCodeAt();
+      return chCode >= 106 
+        ? String((chCode - 98) % 5 + 1) + String(Math.floor((chCode - 98) / 5 + 1))
+        : String((chCode - 97) % 5 + 1) + String(Math.floor((chCode - 97) / 5 + 1));
     }).join('');
   }
 
