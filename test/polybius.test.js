@@ -30,6 +30,10 @@ describe("polybius", () => {
         expected = "'4432423352125413@ 1!'"
         actual = polybius("'thinkful@ 1!'")
         expect(actual).to.be.equal(expected);
+
+        expected = "'4432423352125413@ 1!'"
+        actual = polybius("'thinkful@ 1!'")
+        expect(actual).to.be.equal(expected);
     })
 
     it("should ignore capital letters. 👏👏👏", () => {
@@ -38,13 +42,21 @@ describe("polybius", () => {
         expect(actual).to.be.equal(expected);
     })
 
-    it("should return false if the encoded message has a odd number of digits. 👏👏👏", () => {
+    it("should return false if the encoded message has an odd amount of consecutive numbers greater than one. 👏👏👏", () => {
         actual = polybius("44324233521254131", false);
         expect(actual).to.be.false;
     });
 
     it("should return false if the message has consecutive numbers. 👏👏👏", () => {
         actual = polybius("Thinkful123");
+        expect(actual).to.be.false;
+    });
+
+    it("should return false if a number immediately precedes or follows a letter. 👏👏👏", () => {
+        actual = polybius("Thinkfu1l");
+        expect(actual).to.be.false;
+
+        actual = polybius("Thinkful1");
         expect(actual).to.be.false;
     });
 

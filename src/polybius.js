@@ -10,8 +10,8 @@ const polybiusModule = (function () {
 
     //Decode
     if(!encode){
-      const oddNumberOfDigits = input.match(/\d{1}/g).length%2;
-      if(oddNumberOfDigits) return false;
+      const invalidOddNumberOfDigits = input.match(/\d{2,}/g).every(code => !(code%2));
+      if(invalidOddNumberOfDigits) return false;
       // matches every pair of digits or any non-digits
       return input.match(/\d{2}|\D/g).map(code => {
         const notDigit = !(code*1);
@@ -25,7 +25,8 @@ const polybiusModule = (function () {
 
     //Encode
     const thereIsAPairOfDigits = input.match(/\d{2,}/g);
-    if(thereIsAPairOfDigits) return false;
+    const numberBesideLetter = input.match(/\d[a-zA-Z]|[a-zA-Z]\d/g);
+    if(thereIsAPairOfDigits || numberBesideLetter) return false;
     return input.toLowerCase().split('').map(ch => {
       const notAlphaCharachter = ch.match(/\d|\s|\W/g);
       if(notAlphaCharachter) return ch;

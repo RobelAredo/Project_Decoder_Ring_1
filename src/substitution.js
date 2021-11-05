@@ -18,14 +18,14 @@ const substitutionModule = (function () {
         return String.fromCharCode(chCode + 97);
         }).join('');
     }
-    
+  
     return input.toLowerCase().split('').map(ch => {
       const notAlphaCharachter = ch.match(/\d|\s|\W/g);
       if(notAlphaCharachter) return ch;
       const chCode = ch.charCodeAt() - 97;
       return alphabet[chCode];
     }).join('');
-  }
+  } 
 
   return {
     substitution,
